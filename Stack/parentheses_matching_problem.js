@@ -1,4 +1,4 @@
-class Stack {
+class ParentThesesProblem {
     constructor(items) {
         this.items = items;
         this.stack = [];
@@ -41,8 +41,8 @@ class Stack {
 }
 
 // Creating expression
-const expression = '3*4((5-6)-5'.split('');
+const expression = '3*4((5-6))-5'.split('');
 // console.log(expression);
-const myStack = new Stack(expression);
+const myProblem = new ParentThesesProblem(expression);
 
-console.log(myStack.checkExpression())
+console.log(myProblem.checkExpression())
