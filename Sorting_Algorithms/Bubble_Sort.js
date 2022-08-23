@@ -5,10 +5,12 @@ const unSortedArray = [10,2,5,1,20,40];
 // Bubble Sort Funciton Declaration ..
 function bubbleSort(givenArray){
     let pass = 0;
-    for (let i = 0; i < givenArray.length; i++) {
+    // For number of passes..
+    for (let i = 0; i < (givenArray.length)-1; i++) {
         let swap = false;
         pass++;
-        for (let j = 0; j < givenArray.length; j++) {
+        // For comparison in each pass
+        for (let j = 0; j < (givenArray.length-1)-i; j++) {
             const element = givenArray[j];
             // Compare two adjacent elements
             if(element > givenArray[j+1]){
