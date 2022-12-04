@@ -16,6 +16,46 @@ class BST {
         this.#rootNode = rootNodeVal;
     }
 
+    preOrder = (rootNode = this.#rootNode) => {
+        if(rootNode){
+            console.log(rootNode.node_value);
+
+            if(rootNode.left){
+                this.preOrder(rootNode.left);
+            }
+            if(rootNode.right){
+                this.preOrder(rootNode.right);
+            }
+        }else{
+            console.log("Tree is empty ... 😑");
+        }
+    }
+    inOrder = (currentNode = this.#rootNode) => {
+        if(currentNode){
+            if(currentNode.left !== null){
+                this.inOrder(currentNode.left);
+            }
+            console.log(currentNode.node_value);
+            if(currentNode.right !== null){
+                this.inOrder(currentNode.right);
+            }
+        }else{
+            console.log("Tree is empty ... 😑");
+        }
+    }
+    postOrder = () => {
+
+    }
+
+    traversal = (mode) => {
+        if(mode === "pre"){
+            this.preOrder();
+        }else if(mode === "in"){
+            this.inOrder();
+        }else if(mode === "post"){
+            this.postOrder();
+        }
+    }
     // Manage Insertion Order
     manageInsertion = (newNode, currentRootNode) => {
         // Less value
@@ -97,14 +137,15 @@ const bst = new BST();
 bst.addNode(10);
 bst.addNode(20);
 bst.addNode(5);
+bst.addNode(3);
+bst.addNode(7);
+bst.addNode(20);
 bst.addNode(13);
 bst.addNode(50);
 
-let minVal = bst.findMin();
-let maxVal = bst.findMax();
-console.log("Min value : ", minVal);
-console.log("Max value : ", maxVal);
-// console.log(bst.printBST())
-// const result = bst.searchNode(14);
-// console.log(result);
-// bst.printBST();
+bst.traversal("in");
+
+// let minVal = bst.findMin();
+// let maxVal = bst.findMax();
+// console.log("Min value : ", minVal);
+// console.log("Max value : ", maxVal);
