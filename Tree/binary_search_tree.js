@@ -16,35 +16,62 @@ class BST {
         this.#rootNode = rootNodeVal;
     }
 
-    preOrder = (rootNode = this.#rootNode) => {
+    // DFS Traversal
+    preOrderDfs = (rootNode = this.#rootNode) => {
         if (rootNode) {
             console.log(rootNode.node_value);
-            this.preOrder(rootNode.left);
-            this.preOrder(rootNode.right);
+            this.preOrderDfs(rootNode.left);
+            this.preOrderDfs(rootNode.right);
         }
     }
-    inOrder = (currentNode = this.#rootNode) => {
+    inOrderDfs = (currentNode = this.#rootNode) => {
         if (currentNode) {
-            this.inOrder(currentNode.left);
+            this.inOrderDfs(currentNode.left);
             console.log(currentNode.node_value);
-            this.inOrder(currentNode.right);
+            this.inOrderDfs(currentNode.right);
         }
     }
-    postOrder = (currentNode = this.#rootNode) => {
+    postOrderDfs = (currentNode = this.#rootNode) => {
         if (currentNode) {
-            this.postOrder(currentNode.left);
-            this.postOrder(currentNode.right);
+            this.postOrderDfs(currentNode.left);
+            this.postOrderDfs(currentNode.right);
             console.log(currentNode.node_value);
         }
     }
 
-    traversal = (mode) => {
-        if (mode === "pre") {
-            this.preOrder();
-        } else if (mode === "in") {
-            this.inOrder();
-        } else if (mode === "post") {
-            this.postOrder();
+    // BFS Traversal
+    bfsTraversal = (currentNode = this.#rootNode,setData = new Set()) => {
+        if (currentNode) {
+            if(!setData.has(currentNode.node_value)){
+                console.log(currentNode.node_value);
+                setData.add(currentNode.node_value);
+            }
+          
+            if (currentNode.left) {
+                setData.add(currentNode.left.node_value);
+                console.log(currentNode.left.node_value);
+            }
+            if (currentNode.right) {
+                setData.add(currentNode.right.node_value);
+                console.log(currentNode.right.node_value);
+            }
+            this.bfsTraversal(currentNode.left,setData);
+            this.bfsTraversal(currentNode.right,setData);
+        }     
+    }
+
+    traversal = (type, mode) => {
+        // BFS Traversal
+        if (type === "BFS") {
+            this.bfsTraversal();
+        }
+        // DFS Traversal
+        else if (mode === "pre" && type === "DFS") {
+            this.preOrderDfs();
+        } else if (mode === "in" && type === "DFS") {
+            this.inOrderDfs();
+        } else if (mode === "post" && type === "DFS") {
+            this.postOrderDfs();
         }
     }
     // Manage Insertion Order
@@ -134,8 +161,8 @@ bst.addNode(20);
 bst.addNode(13);
 bst.addNode(50);
 
-bst.traversal("post");
-
+bst.traversal("BFS");
+// bst.traversal("DFS", "pre");
 // let minVal = bst.findMin();
 // let maxVal = bst.findMax();
 // console.log("Min value : ", minVal);
