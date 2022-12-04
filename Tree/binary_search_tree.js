@@ -17,42 +17,33 @@ class BST {
     }
 
     preOrder = (rootNode = this.#rootNode) => {
-        if(rootNode){
+        if (rootNode) {
             console.log(rootNode.node_value);
-
-            if(rootNode.left){
-                this.preOrder(rootNode.left);
-            }
-            if(rootNode.right){
-                this.preOrder(rootNode.right);
-            }
-        }else{
-            console.log("Tree is empty ... 😑");
+            this.preOrder(rootNode.left);
+            this.preOrder(rootNode.right);
         }
     }
     inOrder = (currentNode = this.#rootNode) => {
-        if(currentNode){
-            if(currentNode.left !== null){
-                this.inOrder(currentNode.left);
-            }
+        if (currentNode) {
+            this.inOrder(currentNode.left);
             console.log(currentNode.node_value);
-            if(currentNode.right !== null){
-                this.inOrder(currentNode.right);
-            }
-        }else{
-            console.log("Tree is empty ... 😑");
+            this.inOrder(currentNode.right);
         }
     }
-    postOrder = () => {
-
+    postOrder = (currentNode = this.#rootNode) => {
+        if (currentNode) {
+            this.postOrder(currentNode.left);
+            this.postOrder(currentNode.right);
+            console.log(currentNode.node_value);
+        }
     }
 
     traversal = (mode) => {
-        if(mode === "pre"){
+        if (mode === "pre") {
             this.preOrder();
-        }else if(mode === "in"){
+        } else if (mode === "in") {
             this.inOrder();
-        }else if(mode === "post"){
+        } else if (mode === "post") {
             this.postOrder();
         }
     }
@@ -143,7 +134,7 @@ bst.addNode(20);
 bst.addNode(13);
 bst.addNode(50);
 
-bst.traversal("in");
+bst.traversal("post");
 
 // let minVal = bst.findMin();
 // let maxVal = bst.findMax();
