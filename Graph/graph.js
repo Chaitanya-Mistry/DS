@@ -1,4 +1,4 @@
-console.log("Adding vertexes in our Graph\n");
+console.log("Graph Data-Structures 🔥\n");
 
 class Graph {
     #data;
@@ -35,6 +35,17 @@ class Graph {
             this.addEdge(vertex, edge);
         }
     }
+
+    // Remove Edge(Connection)
+    removeEdge = (vertex,edge) => {
+        // Check whether both vertexes are present or not 🧐
+        if(this.#data[vertex] && this.#data[edge]){
+            // Update 1st 🥇 vertex
+            this.#data[vertex] = this.#data[vertex].filter((data)=> !data.includes(edge));
+            // Update 2nd 🥈 Vertex
+            this.#data[edge] = this.#data[edge].filter((data)=> !data.includes(vertex));
+        }
+    }
 }
 
 const myGraph = new Graph();
@@ -45,6 +56,12 @@ myGraph.addVertex("C");
 myGraph.addVertex("D");
 
 // console.log(myGraph.data)
-myGraph.addEdge("A", "C")
-myGraph.addEdge("C", "A")
+myGraph.addEdge("A", "C");
+myGraph.addEdge("C", "A");
+myGraph.addEdge("A", "D");
+
+console.log("Before removing...");
+myGraph.getGraphData();
+myGraph.removeEdge("A","D");
+console.log("After removing...");
 myGraph.getGraphData();
