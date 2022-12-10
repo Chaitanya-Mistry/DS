@@ -41,9 +41,9 @@ class Graph {
         // Check whether both vertexes are present or not 🧐
         if(this.#data[vertex] && this.#data[edge]){
             // Update 1st 🥇 vertex
-            this.#data[vertex] = this.#data[vertex].filter((data)=> !data.includes(edge));
+            this.#data[vertex] = this.#data[vertex].filter((data)=> data != edge);
             // Update 2nd 🥈 Vertex
-            this.#data[edge] = this.#data[edge].filter((data)=> !data.includes(vertex));
+            this.#data[edge] = this.#data[edge].filter((data)=> data != vertex);
         }
     }
 }
